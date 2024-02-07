@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huali.sportsinjuryandrecovery.mapper.MessageMapper">
+    <insert id="sendMessages">
+        insert into message values(#{messageId},#{senderId},#{receiverId},#{messageTime},#{content})
+    </insert>
+
+    <select id="getMessagesById" resultType="com.huali.sportsinjuryandrecovery.pojo.Message">
+        select * from message <where>
+        senderId = #{userId} or receiverId = #{userId}
+    </where> order by messageTime
+    </select>
+
+
+</mapper>

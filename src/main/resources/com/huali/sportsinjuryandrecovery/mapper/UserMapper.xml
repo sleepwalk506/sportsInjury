@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huali.sportsinjuryandrecovery.mapper.UserMapper">
+    <insert id="addNewUser">
+        insert into user values(#{userId},#{password},1,0.0,0.0,null,null,null,null)
+    </insert>
+    <select id="list" resultType="com.huali.sportsinjuryandrecovery.pojo.User">
+        select * from user
+    </select>
+    <select id="getUserById" resultType="com.huali.sportsinjuryandrecovery.pojo.User">
+        select * from user
+        <where>
+            userId = #{userId} and password = #{password}
+        </where>
+    </select>
+    <select id="getUserOnlyById" resultType="com.huali.sportsinjuryandrecovery.pojo.User">
+        select * from user
+        <where>
+            userId = #{userId}
+        </where>
+    </select>
+    <select id="getUserImage" resultType="com.huali.sportsinjuryandrecovery.pojo.UserImage">
+        select imageUrl from userimage where userId = #{userId}
+    </select>
+    <update id="editUserInfo">
+        update user set password = #{password},gender = #{gender},height = #{height},weight = #{weight},
+        phoneNumber = #{phoneNumber},email = #{Email}
+        <where>
+            userId = #{userId}
+        </where>
+    </update>
+    <update id="updateUserImage">
+        update userimage set imageUrl = #{imageUrl} <where>
+        userId = #{userId}
+    </where>
+    </update>
+
+    <select id="getFriends" resultType="com.huali.sportsinjuryandrecovery.pojo.User">
+        select * from user natural join friends where userId = #{userId}
+    </select>
+</mapper>

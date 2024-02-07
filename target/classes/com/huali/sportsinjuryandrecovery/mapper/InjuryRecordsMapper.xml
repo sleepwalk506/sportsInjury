@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huali.sportsinjuryandrecovery.mapper.InjuryRecordsMapper">
+    <select id="getAllInjuryRecordsByUser" resultType="com.huali.sportsinjuryandrecovery.pojo.InjuryRecords">
+        select recordId,userId,injuryType,injuryPosition,dateOfInjury,recoveryStatus,injuryDescription from injuryrecord <where> userId = #{userId} </where>
+    </select>
+    <select id="getInjuryRecordsByInjuryType" resultType="com.huali.sportsinjuryandrecovery.pojo.InjuryRecords">
+        select * from injuryrecord <where> userId = #{userId} and injuryType = #{injuryType} </where>
+    </select>
+    <select id="getInjuryRecordsByInjuryPosition" resultType="com.huali.sportsinjuryandrecovery.pojo.InjuryRecords">
+        select * from injuryrecord <where> userId = #{userId} and injuryPosition = #{injuryPosition} </where>
+    </select>
+    <insert id="addNewInjuryRecord">
+        insert into injuryrecord values(#{recordId},#{userId},#{injuryType},#{injuryPosition},#{dateOfInjury},#{recoveryStatus},#{injuryDescription})
+    </insert>
+    <delete id="deleteInjuryRecord">
+        delete from injuryrecord <where> recordId = #{recordId} </where>
+    </delete>
+    <update id="updateInjuryRecord">
+        update injuryrecord
+        <trim prefix="set" suffixOverrides=",">
+            <if test="injuryType != null">injuryType = #{injuryType},</if>
+            <if test="injuryPosition != null">injuryPosition = #{injuryPosition},</if>
+            <if test="dateOfInjury != null">dateOfInjury = #{dateOfInjury},</if>
+            <if test="recoveryStatus != null">recoveryStatus = #{recoveryStatus},</if>
+            <if test="injuryDescription != null">injuryDescription = #{injuryDescription}</if>
+        </trim>
+        <where> recordId = #{recordId} </where>
+    </update>
+</mapper>

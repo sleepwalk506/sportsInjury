@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huali.sportsinjuryandrecovery.mapper.SportsRecordsMapper">
+    <insert id="addSportsRecordsInfo">
+        insert into exercise values(#{exerciseId},#{userId},#{exerciseType},#{exerciseTime},#{kcal},null,null,null,#{avgSpeed},#{exerciseDate},#{avgHeartRate})
+    </insert>
+    <update id="editSportsRecordsInfo">
+        update exercise set exerciseType=#{exerciseType},exerciseDate=#{exerciseDate},exerciseTime=#{exerciseTime},kcal=#{kcal},
+        avgSpeed=#{avgSpeed},avgHeartRate=#{avgHeartRate}<where>
+        exerciseId=#{exerciseId}
+    </where>
+    </update>
+    <select id="sportsRecordList" resultType="com.huali.sportsinjuryandrecovery.pojo.SportsRecord">
+        select exerciseId,exerciseType,exerciseDate,exerciseTime,kcal,avgSpeed,avgHeartRate from exercise where userId = #{userId}
+    </select>
+</mapper>
