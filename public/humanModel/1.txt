@@ -1,0 +1,16 @@
+Ankle Joint(Inside of Ankle Joint,Outside of Ankle Joint)
+Elbow Joint(Inside of Elbow Joint,Outside of Elbow Joint)
+Foot
+Forearm
+hand
+Head
+Knee(Front of Knee,Inside of Knee,Outside of Knee,Back of Knee)
+Lower Leg
+Lumbar Vertebrae
+Neck
+Sacrum and Coccyx
+Shoulder(Scapular Area,Front of Shoulder,Back of Shoulder)
+Thigh
+Thoracic Vertebrae
+Wrist
+Upper Limbs
